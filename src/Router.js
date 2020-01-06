@@ -5,6 +5,7 @@ import ArticleArea from './ArticleArea'
 import ScoreTableArea from './ScoreTableArea'
 import ArticleDetails from './ArticleDetails'
 import GameArea from './GameArea'
+import PlayerArea from './PlayerArea'
 
 export default class Router extends Component {
     
@@ -18,8 +19,7 @@ export default class Router extends Component {
                     <Route exact path='/table' render={() => <ScoreTableArea seasons={data.seasons}/>} />
                     <Route exact path='/games' render={() => <GameArea seasons={data.seasons}/>}/>
                     <Route exact path='/games/create' render={() => <h1>game create</h1>}/>
-                    <Route exact path='/players' render={() => <h1>player list</h1>}/>
-                    <Route exact path='/players/:id' render={() => <h1>player id</h1>}/>
+                    <Route exact path='/players' render={() => <PlayerArea accounts={data.accounts} seasons={data.seasons}/>}/>
                     <Route exact path='/players/create' render={() => <h1>player create</h1>}/>
                     <Route exact path='/articles' render={() => <ArticleArea articles={data.articles}/>} /> 
                     <Route exact path='/articles/:id' render={routeProps => <ArticleDetails {...routeProps} articles={data.articles} />}/>
