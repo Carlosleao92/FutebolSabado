@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import TableDropDown from './TableDropDown'
+import DropDown from './DropDown'
 import ScoreTable from './ScoreTable'
 
 export default class ScoreTableArea extends Component {
@@ -16,7 +16,7 @@ export default class ScoreTableArea extends Component {
     };
 
     render() {
-        let season = this.props.players.seasons.filter(season => season.seasonId === this.state.seasonSelected)[0];
+        let season = this.props.seasons.seasonList.filter(season => season.id === this.state.seasonSelected)[0];
         let table = null;
         if (this.state.seasonSelected) {
             table = <ScoreTable season={season}></ScoreTable>
@@ -25,8 +25,8 @@ export default class ScoreTableArea extends Component {
         return (
             <div>
                 <div>
-                    <h1>Results table</h1>
-                    <TableDropDown seasons={this.props.players.seasons} currentSeason={this.props.currentSeason} handleClick={this.handleSeasonSelected}></TableDropDown>
+                    <h1 className="area-title">Results table</h1>
+                    <DropDown options={this.props.seasons.seasonList} handleClick={this.handleSeasonSelected}></DropDown>
                 </div>
                 {table}
             </div>

@@ -20,7 +20,7 @@ export default class ArticleArea extends Component {
         let articles = this.props.articleNumber ? this.props.articles.slice(0, this.props.articleNumber) : this.props.articles
         return (
             <div>
-                <div className="article-area-title"><h1>Check our latest news</h1></div>
+                <div className="area-title"><h1>Check our latest news</h1></div>
                 <div className="container">
                     <div className="row">
                             {articles.map((article, index) => <ArticleCard key={article.id} article={article}></ArticleCard>)}

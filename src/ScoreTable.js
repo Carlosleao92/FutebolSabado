@@ -8,7 +8,6 @@ export default class ScoreTable extends Component {
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
-                        <th scope="col">Best Season</th>
                         <th scope="col">Appearances</th>
                         <th scope="col">Wins</th>
                         <th scope="col">Points</th>
@@ -18,7 +17,6 @@ export default class ScoreTable extends Component {
                 {season.playerList.map((player) => 
                     <tr>
                     <th key={player.id} scope="row">{player.name}</th>
-                        <td>{player.bestFinalPosition}</td>
                         <td>{player.presences}</td>
                         <td>{player.wins}</td>
                         <td>{player.points}</td>

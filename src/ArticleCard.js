@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import articleImg from './img/match.jpg'
 import './ArticleCard.css'
 
 export default class ArticleCard extends Component {
@@ -8,7 +7,7 @@ export default class ArticleCard extends Component {
         return (
             <div className="col-sm-6 article-card">
                 <div className="card">
-                    <img src={articleImg} className="card-img-top" alt="articleImg"/>
+                    <img src={window.location.origin + article.image} className="card-img-top" alt="articleImg"/>
                         <div className="card-body">
                             <h5 className="card-title">{article.title}</h5>
                             <p className="card-text">{article.description}</p>
