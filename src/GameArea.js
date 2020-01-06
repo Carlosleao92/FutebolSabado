@@ -11,8 +11,6 @@ export default class GameArea extends Component {
         };
         this.handleSeasonSelected = this.handleSeasonSelected.bind(this);
         this.handleGameSelected = this.handleGameSelected.bind(this);
-        this.getSelectedSeasonData = this.getSelectedSeasonData.bind(this);
-        this.getSelectedGameData = this.getSelectedGameData.bind(this);
     }
     //TODO MAKE this handlers one dynamic method
     handleSeasonSelected(id) {

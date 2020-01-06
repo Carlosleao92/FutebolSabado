@@ -39,8 +39,8 @@ const articles =  [
 const accounts = {
     accountList: [
         {
-            accountId: 1,
-            accountName: "Carlos Leão",
+            id: 1,
+            name: "Carlos Leão",
             playerList: [
                 2020010301,
                 2019060201
