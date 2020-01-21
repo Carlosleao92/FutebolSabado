@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import ArticleCard from './ArticleCard'
-import './ArticleArea.css'
+import ArticleCard from '../ArticleCard/ArticleCard'
+import './ArticlesPage.css'
 
-export default class ArticleArea extends Component {
+export default class ArticlesPage extends Component {
     constructor(props) {
         super(props);
         //defaultProps = {articleNumber: undefined}

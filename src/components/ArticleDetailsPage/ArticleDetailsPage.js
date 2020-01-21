@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 
-export default class ArticleDetails extends Component {
+export default class ArticleDetailsPage extends Component {
     render() {
         let articles = this.props.articles
         let article = articles.filter(obj => obj.id == this.props.match.params.id)[0];

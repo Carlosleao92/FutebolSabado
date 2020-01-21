@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class playerInfo extends Component {
+export default class PlayerInfo extends Component {
     render() {
         let player = this.props.player;
         return (

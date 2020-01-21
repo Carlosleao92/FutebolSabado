@@ -2,9 +2,9 @@ import React from 'react';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.min.js"
-import Navbar from "./Navbar"
-import Router from "./Router"
-import {data} from "./data.js"
+import Navbar from "./components/Navbar/Navbar"
+import Router from "./routes/Router"
+import {data} from "./data/data"
 
 function App() {
   

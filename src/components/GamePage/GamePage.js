@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import DropDown from './DropDown'
-import GameInfo from './GameInfo'
+import DropDown from '../DropDown/DropDown'
+import GameInfo from '../GameInfo/GameInfo'
 
-export default class GameArea extends Component {
+export default class GamePage extends Component {
     constructor(props) {
         super(props);
         this.state = {

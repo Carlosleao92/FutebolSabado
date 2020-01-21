@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import SelectableListTable from './SelectableListTable'
+import SelectableListTable from '../SelectableListTable/SelectableListTable'
 
 export default class GameInfo extends Component {
     render() {

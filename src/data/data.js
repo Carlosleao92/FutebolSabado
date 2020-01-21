@@ -2,6 +2,8 @@
 CSS no geral
 Nos Dropdowns usar o patterns dos forms
 Nomes de alguns componentes
+/players apenas escolhe o account ID e leva para /players/playerId
+nop players
 */
 
 
