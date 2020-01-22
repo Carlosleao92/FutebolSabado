@@ -15,21 +15,11 @@ const accountSchema = new Schema({
         unique: false,
         trim: true
     },
-    id: {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true
-    },
     latestSeasonId: {
         type: String,
         trim: true
     },
-    playerIdList: [{
-        type: String,
-        unique: true,
-        trim: true
-    }],
+    playerIdList: [String],
     
 
 }, {

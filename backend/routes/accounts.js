@@ -4,7 +4,7 @@ let Account = require('../models/account.model');
 router.route('/').get((req, res) => {
     Account.find()
         .then(accounts => res.json(accounts))
-        .catch(err => res.status(400).jsom('ERROR: ' + err))
+        .catch(err => res.status(400).json('ERROR: ' + err))
 });
 
 router.route('/:id').get((req, res) => {
@@ -28,7 +28,7 @@ router.route('/add').post((req, res) => {
 })
 
 router.route('/delete/:id').delete((req, res) => {
-    Account.findById(req.params.id)
+    Account.findByIdAndDelete(req.params.id)
         .then(() => {res.json('Account deleted.')})
         .catch(err => res.status(400).json('ERROR: ' + err))
 })
