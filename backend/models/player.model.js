@@ -15,7 +15,6 @@ const playerSchema = new Schema({
         unique: true,
         trim: true
     },
-    gameIdList: [String]
 }, {
     timestamps: true
 })

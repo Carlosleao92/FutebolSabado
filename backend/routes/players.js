@@ -16,7 +16,6 @@ router.route('/:id').get((req, res) => {
 router.route('/add').post((req, res) => {
     const accountId = req.body.accountId;  
     const seasonId = req.body.seasonId;
-    const gameIdList = req.body.gameIdList;
 
     const newSeason = new Player({accountId, seasonId,  gameIdList});
 
@@ -36,7 +35,6 @@ router.route('/update/:id').post((req, res) => {
         .then((player) => {
             player.accountId = req.body.accountId;
             player.seasonId = req.body.seasonId;
-            player.gameIdList = req.body.gameIdList;
             
             player.save()
                 .then(() => {res.json('Player Updated')})
