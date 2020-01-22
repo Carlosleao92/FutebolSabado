@@ -27,13 +27,11 @@ connection.once('open', () => {
 const accountsRouter = require('./routes/accounts');
 const seasonsRouter = require('./routes/seasons');
 const gamesRouter = require('./routes/games');
-const playersRouter = require('./routes/players');
 /*const articlesRouter = require('./routes/accounts');*/
 
 app.use('/api/accounts', accountsRouter);
 app.use('/api/seasons', seasonsRouter);
 app.use('/api/games', gamesRouter);
-app.use('/api/players', playersRouter);
 /*app.use('/api/articles, articlesRouter);*/
 
 // Connection to Port

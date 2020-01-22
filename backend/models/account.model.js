@@ -15,12 +15,6 @@ const accountSchema = new Schema({
         unique: false,
         trim: true
     },
-    latestSeasonId: {
-        type: String,
-        trim: true
-    },
-    playerIdList: [String],
-    
 
 }, {
     timestamps: true
