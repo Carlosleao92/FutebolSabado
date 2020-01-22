@@ -14,11 +14,9 @@ router.route('/:id').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
-    const gameIdList = req.body.gameIdList;
-    const playerIdList = req.body.playerIdList;
     const name = req.body.name;
 
-    const newSeason = new Season({name, playerIdList,  gameIdList});
+    const newSeason = new Season({name});
 
     newSeason.save()
         .then(seasons => res.json('user added'))
@@ -34,8 +32,6 @@ router.route('/delete/:id').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
     Season.findById(req.params.id)
         .then((season) => {
-            season.gameIdList = req.body.gameIdList;
-            season.playerIdList = req.body.playerIdList;
             season.name = req.body.name;
 
             season.save()

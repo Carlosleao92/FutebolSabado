@@ -8,8 +8,6 @@ const seasonSchema = new Schema({
         required: true,
         unique: true
     },
-    playerIdList: [String],
-    gameIdList: [String]    
 }, {
     timestamps: true
 })
