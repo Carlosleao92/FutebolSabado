@@ -12,7 +12,7 @@ const gameSchema = new Schema({
         type: Date,
         required: true
     },
-    teams: [[String]],
+    teams: [String],
     score: {
         type: String,
         required: true,

@@ -13,6 +13,20 @@ router.route('/:id').get((req, res) => {
         .catch(err => res.status(400).json('ERROR: ' + err))
 });
 
+//get Game By Account Id
+router.route('/account/:id').get((req, res) => {
+    Game.find({teams: {$all: [`${req.params.id}`]} })
+        .then(account => res.json(account))
+        .catch(err => res.status(400).json('ERROR: ' + err))
+});
+
+//get Game By Season Id
+router.route('/season/:id').get((req, res) => {
+    Game.find({seasonId: req.params.id})
+        .then(account => res.json(account))
+        .catch(err => res.status(400).json('ERROR: ' + err))
+});
+
 router.route('/add').post((req, res) => {
     const seasonId = req.body.seasonId;
     const date = req.body.date;

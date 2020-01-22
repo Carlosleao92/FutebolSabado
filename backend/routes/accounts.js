@@ -14,20 +14,6 @@ router.route('/:id').get((req, res) => {
         .catch(err => res.status(400).json('ERROR: ' + err))
 });
 
-//get Game By Account Id
-router.route('/Season/:id').get((req, res) => {
-    Account.findById(req.params.id)
-        .then(account => res.json(account))
-        .catch(err => res.status(400).json('ERROR: ' + err))
-});
-
-//get Game By Season Id
-router.route('/Account/:id').get((req, res) => {
-    Account.findById(req.params.id)
-        .then(account => res.json(account))
-        .catch(err => res.status(400).json('ERROR: ' + err))
-});
-
 //add Games
 router.route('/add').post((req, res) => {
     const firstName = req.body.firstName;
