@@ -1,18 +1,34 @@
 const router = require('express').Router();
 let Account = require('../models/account.model');
 
+//get Games
 router.route('/').get((req, res) => {
     Account.find()
         .then(accounts => res.json(accounts))
         .catch(err => res.status(400).json('ERROR: ' + err))
 });
-
+//get Game By Id
 router.route('/:id').get((req, res) => {
     Account.findById(req.params.id)
         .then(account => res.json(account))
         .catch(err => res.status(400).json('ERROR: ' + err))
 });
 
+//get Game By Account Id
+router.route('/Season/:id').get((req, res) => {
+    Account.findById(req.params.id)
+        .then(account => res.json(account))
+        .catch(err => res.status(400).json('ERROR: ' + err))
+});
+
+//get Game By Season Id
+router.route('/Account/:id').get((req, res) => {
+    Account.findById(req.params.id)
+        .then(account => res.json(account))
+        .catch(err => res.status(400).json('ERROR: ' + err))
+});
+
+//add Games
 router.route('/add').post((req, res) => {
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
@@ -27,12 +43,14 @@ router.route('/add').post((req, res) => {
         .catch(err => res.status(400).json('ERROR: ' + err))
 })
 
+//delete by Id
 router.route('/delete/:id').delete((req, res) => {
     Account.findByIdAndDelete(req.params.id)
         .then(() => {res.json('Account deleted.')})
         .catch(err => res.status(400).json('ERROR: ' + err))
 })
 
+//update by Id
 router.route('/update/:id').post((req, res) => {
     Account.findById(req.params.id)
         .then((account) => {
