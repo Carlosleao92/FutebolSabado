@@ -2,44 +2,32 @@
 let Game = require('../models/game.model');
 
 class GameDao {
-    async getAllGames(req, res) {
-        return Game.find()
-        .then(games => res.json(games))
-        .catch(err => res.status(400).json('ERROR: ' + err));
+    async getAllGames(req) {
+        return await Game.find();
     };
 
-    async getGamesById(req, res) {
-        return Game.findById(req.params.id)
-        .then(game => res.json(game))
-        .catch(err => res.status(400).json('ERROR: ' + err))
+    async getGamesById(req) {
+        return await Game.findById(req.params.id);
     }
 
-    async getGamesBySeasonId(req, res) {
-        return Game.find({seasonId: req.params.id})
-        .then(game => res.json(game))
-        .catch(err => res.status(400).json('ERROR: ' + err))
+    async getGamesBySeasonId(req) {
+        return await Game.find({seasonId: req.params.id});
     }
 
-    async getGamesByAccountId(req, res) {
-        return Game.find({teams: {$all: [`${req.params.id}`]} })
-        .then(game => res.json(game))
-        .catch(err => res.status(400).json('ERROR: ' + err))
+    async getGamesByAccountId(req) {
+        return await Game.find({teams: {$all: [`${req.params.id}`]} });
     }
 
-    async addGame(newGame, res) {
-        return newGame.save()
-        .then(() => res.json('user added'))
-        .catch(err => res.status(400).json('ERROR: ' + err))
+    async addGame(newGame) {
+        return await newGame.save();
     }
 
-    async deleteGame(req, res) {
-        return Game.findByIdAndDelete(req.params.id)
-        .then(() => {res.json('Game deleted.')})
-        .catch(err => res.status(400).json('ERROR: ' + err))
+    async deleteGame(req) {
+        return await Game.findByIdAndDelete(req.params.id);
     }
 
-    async updateGame(req, res) {
-        return Game.updateOne(
+    async updateGame(req) {
+        return await Game.updateOne(
             {_id:req.params.id},
             {
                 seasonId: req.body.seasonId,
@@ -48,8 +36,7 @@ class GameDao {
                 score: req.body.score
             }
         )
-        .then(() => {res.json('Game Updated')})
-        .catch(err => res.status(400).json('ERROR: ' + err))
+        
     }
 }
 
