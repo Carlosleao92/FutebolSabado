@@ -10,7 +10,7 @@ class GameBusiness {
         return await GameDao.getGamesById(req);
     };
 
-    async getGamesBySeasonId(req) {
+    async getSeasonGameHistory(req) {
         return await GameDao.getGamesBySeasonId(req);
     };
 
@@ -20,6 +20,28 @@ class GameBusiness {
             return this.buildAccountDataBySeason(accountGameList, req.params.id);
         }
         return gameList;
+    };
+
+    async addGame(req) {
+        const newGame = new Game();
+        this.mapGameData(req.body, newGame);
+
+        return await GameDao.addGame(newGame);
+    };
+
+    async deleteGame(req) {
+        return await GameDao.deleteGame(req);
+    };
+
+    async updateGame(req) {
+        return await GameDao.updateGame(req);
+    };
+
+    mapGameData(origin, game) {
+        game.seasonId = origin.seasonId;
+        game.date = origin.date;
+        game.teams = origin.teams;
+        game.score = origin.score;
     };
 
     buildAccountDataBySeason(accountGameList, accountId) {
@@ -32,7 +54,7 @@ class GameBusiness {
         }
         for (let season of data) { this.calculateSeasonStats(season, accountId); }
         return data;
-    }
+    };
 
     calculateSeasonStats(season, accountId) {
         let presences = 0;
@@ -68,7 +90,7 @@ class GameBusiness {
         season.wins = wins;
         season.draws = draws;
         season.points = points;
-    }
+    };
 
     registerSeasonInData(data, game) {
         data.push({
@@ -116,29 +138,7 @@ class GameBusiness {
                 break;
         }
         return points;
-    }
-
-    async addGame(req) {
-        const newGame = new Game();
-        this.mapGameData(req.body, newGame);
-
-        return await GameDao.addGame(newGame);
     };
-
-    async deleteGame(req) {
-        return await GameDao.deleteGame(req);
-    };
-
-    async updateGame(req) {
-        return await GameDao.updateGame(req);
-    };
-
-    mapGameData(origin, game) {
-        game.seasonId = origin.seasonId;
-        game.date = origin.date;
-        game.teams = origin.teams;
-        game.score = origin.score;
-    }
 };
 
 module.exports = new GameBusiness();

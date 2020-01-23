@@ -15,16 +15,16 @@ router.route('/:id').get((req, res) => {
         .catch(err => res.status(400).json('ERROR: ' + err));
 });
 
-//get Game By Account Id
+//gets all games and stats of the Account Id (organized by season)
 router.route('/account/:id').get((req, res) => {
     GameBusiness.getAccountGameHistory(req)
         .then(game => res.json(game))
         .catch(err => res.status(400).json('ERROR: ' + err));
 });
 
-//get Game By Season Id
+//get all games and stats of the season Id (organized by player)
 router.route('/season/:id').get((req, res) => {
-    GameBusiness.getGamesBySeasonId(req)
+    GameBusiness.getSeasonGameHistory(req)
         .then(game => res.json(game))
         .catch(err => res.status(400).json('ERROR: ' + err));
 });
