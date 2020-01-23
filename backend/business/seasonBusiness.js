@@ -2,27 +2,27 @@ let Season = require('../models/season.model');
 let SeasonDao = require('../dao/seasonDao');
 
 class SeasonBusiness {
-    async getAllSeasons(req, res) {
-        return await SeasonDao.getAllSeasons(req, res);
+    async getAllSeasons(req) {
+        return await SeasonDao.getAllSeasons(req);
     };
 
-    async getSeasonsById(req, res) {
-        return await SeasonDao.getSeasonsById(req, res);
+    async getSeasonsById(req) {
+        return await SeasonDao.getSeasonsById(req);
     };
 
-    async addSeason(req, res) {
+    async addSeason(req) {
         const name = req.body.name;
         const newSeason = new Season({name});
         
-        return await SeasonDao.addSeason(newSeason, res);
+        return await SeasonDao.addSeason(newSeason);
     };
 
-    async deleteSeason(req, res) {
-        return await SeasonDao.deleteSeason(req, res);
+    async deleteSeason(req) {
+        return await SeasonDao.deleteSeason(req);
     };
 
-    async updateSeason(req, res) {
-        return await SeasonDao.updateSeason(req, res);
+    async updateSeason(req) {
+        return await SeasonDao.updateSeason(req);
     };
 };
 
