@@ -42,8 +42,10 @@ class GameDao {
         return Game.updateOne(
             {_id:req.params.id},
             {
-                firstName: req.body.firstName,
-                lastName: req.body.lastName
+                seasonId: req.body.seasonId,
+                date: req.body.date,
+                teams: req.body.teams,
+                score: req.body.score
             }
         )
         .then(() => {res.json('Game Updated')})

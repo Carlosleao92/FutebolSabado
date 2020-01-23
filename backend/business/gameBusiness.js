@@ -34,8 +34,10 @@ class GameBusiness {
     };
 
     mapGameData(origin, game) {
-        game.firstName = origin.firstName;
-        game.lastName = origin.lastName;
+        game.seasonId = origin.seasonId;
+        game.date = origin.date;
+        game.teams = origin.teams;
+        game.score = origin.score;
     }
 };
 
