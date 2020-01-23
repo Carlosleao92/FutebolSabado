@@ -17,7 +17,7 @@ router.route('/:id').get((req, res) => {
 
 //get Game By Account Id
 router.route('/account/:id').get((req, res) => {
-    GameBusiness.getGamesByAccountId(req)
+    GameBusiness.getAccountGameHistory(req)
         .then(game => res.json(game))
         .catch(err => res.status(400).json('ERROR: ' + err));
 });

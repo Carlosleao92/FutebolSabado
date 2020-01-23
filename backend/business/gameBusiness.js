@@ -14,7 +14,7 @@ class GameBusiness {
         return await GameDao.getGamesBySeasonId(req);
     };
 
-    async getGamesByAccountId(req) {
+    async getAccountGameHistory(req) {
         let accountGameList = await GameDao.getGamesByAccountId(req);
         if (accountGameList) {
             return this.buildAccountDataBySeason(accountGameList, req.params.id);
