@@ -2,27 +2,27 @@ let Account = require('../models/account.model');
 let AccountDao = require('../dao/accountDao');
 
 class AccountBusiness {
-    async getAllAccounts(req, res) {
-        return await AccountDao.getAllAccounts(req, res);
+    async getAllAccounts(req) {
+        return await AccountDao.getAllAccounts(req);
     };
 
-    async getAccountsById(req, res) {
-        return await AccountDao.getAccountsById(req, res);
+    async getAccountsById(req) {
+        return await AccountDao.getAccountsById(req);
     };
 
-    async addAccount(req, res) {
+    async addAccount(req) {
         const newAccount = new Account();
         this.mapAccountData(req.body, newAccount);
 
-        return await AccountDao.addAccount(newAccount, res);
+        return await AccountDao.addAccount(newAccount);
     };
 
-    async deleteAccount(req, res) {
-        return await AccountDao.deleteAccount(req, res);
+    async deleteAccount(req) {
+        return await AccountDao.deleteAccount(req);
     };
 
-    async updateAccount(req, res) {
-        return await AccountDao.updateAccount(req, res);
+    async updateAccount(req) {
+        return await AccountDao.updateAccount(req);
     };
 
     mapAccountData(origin, account) {

@@ -11,11 +11,11 @@ class GameDao {
     }
 
     async getGamesBySeasonId(req) {
-        return await Game.find({seasonId: req.params.id});
+        return await Game.find({ seasonId: req.params.id });
     }
 
     async getGamesByAccountId(req) {
-        return await Game.find({teams: {$all: [`${req.params.id}`]} });
+        return await Game.find({ teams: { $all: [`${req.params.id}`] } });
     }
 
     async addGame(newGame) {
@@ -28,7 +28,7 @@ class GameDao {
 
     async updateGame(req) {
         return await Game.updateOne(
-            {_id:req.params.id},
+            { _id: req.params.id },
             {
                 seasonId: req.body.seasonId,
                 date: req.body.date,
@@ -36,7 +36,7 @@ class GameDao {
                 score: req.body.score
             }
         )
-        
+
     }
 }
 
