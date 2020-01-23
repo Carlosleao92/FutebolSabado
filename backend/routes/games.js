@@ -1,64 +1,36 @@
 const router = require('express').Router();
 let Game = require('../models/game.model');
+let GameBusiness = require('../business/gameBusiness')
+
 
 router.route('/').get((req, res) => {
-    Game.find()
-        .then(games => res.json(games))
-        .catch(err => res.status(400).json('ERROR: ' + err))
+    GameBusiness.getAllGames(req, res);
 });
 
 router.route('/:id').get((req, res) => {
-    Game.findById(req.params.id)
-        .then(game => res.json(game))
-        .catch(err => res.status(400).json('ERROR: ' + err))
+    GameBusiness.getGamesById(req, res);
 });
 
 //get Game By Account Id
 router.route('/account/:id').get((req, res) => {
-    Game.find({teams: {$all: [`${req.params.id}`]} })
-        .then(account => res.json(account))
-        .catch(err => res.status(400).json('ERROR: ' + err))
+    GameBusiness.getGamesByAccountId(req, res);
 });
 
 //get Game By Season Id
 router.route('/season/:id').get((req, res) => {
-    Game.find({seasonId: req.params.id})
-        .then(account => res.json(account))
-        .catch(err => res.status(400).json('ERROR: ' + err))
+    GameBusiness.getGamesBySeasonId(req, res);
 });
 
 router.route('/add').post((req, res) => {
-    const seasonId = req.body.seasonId;
-    const date = req.body.date;
-    const teams = req.body.teams;
-    const score = req.body.score;
-
-    const newGame = new Game({seasonId, date,  teams, score});
-
-    newGame.save()
-        .then(game => res.json('game added'))
-        .catch(err => res.status(400).json('ERROR: ' + err))
+    GameBusiness.addGame(req, res);
 })
 
 router.route('/delete/:id').delete((req, res) => {
-    Game.findByIdAndDelete(req.params.id)
-        .then(() => {res.json('Game deleted.')})
-        .catch(err => res.status(400).json('ERROR: ' + err))
+    GameBusiness.deleteGame(req, res);
 })
 
 router.route('/update/:id').post((req, res) => {
-    Game.findById(req.params.id)
-        .then((game) => {
-            game.seasonId = req.body.seasonId;
-            game.date = req.body.date;
-            game.teams = req.body.teams;
-            game.score = req.body.score;
-
-            game.save()
-                .then(() => {res.json('Game Updated')})
-                .catch(err => res.status(400).json('ERROR: ' + err))
-        })
-        .catch(err => res.status(400).json('ERROR: ' + err))
+    GameBusiness.updateGame(req, res);
 })
 
 module.exports = router;
