@@ -1,4 +1,3 @@
-
 let Account = require('../models/account.model');
 let AccountDao = require('../dao/accountDao');
 
