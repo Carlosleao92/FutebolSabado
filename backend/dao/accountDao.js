@@ -9,7 +9,10 @@ class AccountDao {
 
     async getAccountsById(req) {
         return Account.findById(req.params.id);
+    }
 
+    async getAccountsByIds(req) {
+        return Account.find({_id: {$in: req.body.ids}});
     }
 
     async addAccount(newAccount) {

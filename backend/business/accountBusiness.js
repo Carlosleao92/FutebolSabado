@@ -10,6 +10,10 @@ class AccountBusiness {
         return await AccountDao.getAccountsById(req);
     };
 
+    async getAccountsByIds(req) {
+        return await AccountDao.getAccountsByIds(req);
+    };
+
     async addAccount(req) {
         const newAccount = new Account();
         this.mapAccountData(req.body, newAccount);

@@ -16,6 +16,13 @@ router.route('/:id').get((req, res) => {
         .catch(err => res.status(400).json('ERROR: ' + err));
 });
 
+// TODO get game by many Id
+router.route('/').post((req, res) => {
+    AccountBusiness.getAccountsByIds(req)
+        .then(account => res.json(account))
+        .catch(err => res.status(400).json('ERROR: ' + err));
+});
+
 //add Games
 router.route('/add').post((req, res) => {
     AccountBusiness.addAccount(req)
