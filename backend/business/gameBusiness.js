@@ -11,7 +11,11 @@ class GameBusiness {
     };
 
     async getSeasonGameHistory(req) {
-        return await GameDao.getGamesBySeasonId(req);
+        let seasonGameList = await GameDao.getGamesBySeasonId(req);
+        if (seasonGameList) {
+            return this.buildSeasonDataByAccounts(seasonGameList);
+        }
+        return seasonGameList
     };
 
     async getAccountGameHistory(req) {
@@ -19,7 +23,7 @@ class GameBusiness {
         if (accountGameList) {
             return this.buildAccountDataBySeason(accountGameList, req.params.id);
         }
-        return gameList;
+        return accountGameList;
     };
 
     async addGame(req) {
@@ -44,6 +48,19 @@ class GameBusiness {
         game.score = origin.score;
     };
 
+    buildSeasonDataByAccounts(seasonGameList) {
+        let accountDataList = [];
+        for (let game of seasonGameList) {
+            for (let accountId of game.teams) {
+                if (!this.isAccountAlreadyRegistered(accountId, accountDataList)) {
+                    this.addAccountToList(accountId, accountDataList);
+                }
+                this.calculateAccountGameStats(game, accountId, accountDataList);
+            }
+        }
+        return {seasonGameList: seasonGameList, accountDataList: accountDataList};
+    }
+
     buildAccountDataBySeason(accountGameList, accountId) {
         let data = [];
         for (let game of accountGameList) {
@@ -56,42 +73,6 @@ class GameBusiness {
         return data;
     };
 
-    calculateSeasonStats(season, accountId) {
-        let presences = 0;
-        let wins = 0;
-        let draws = 0;
-        let points = 0;
-
-        for (let game of season.gameList) {
-            presences += 1;
-
-            let teamSide = 0;
-            game.teams.indexOf(accountId) < 5 ? teamSide = 1 : teamSide = -1;
-
-            let goals = game.score.split("-");
-            let goalDifference = (goals[0] - goals[1]) * teamSide
-            let scoreCase = Math.sign(goalDifference);
-            switch (scoreCase) {
-                case 1:
-                    wins += 1;
-                    points += this.getPointsByGoalDifference(goalDifference);
-                    break;
-                case 0:
-                    draws += 1;
-                    points += 1
-                    break;
-                case -1:
-                    points += 0.5;
-                    break;
-            }
-        }
-
-        season.presences = presences;
-        season.wins = wins;
-        season.draws = draws;
-        season.points = points;
-    };
-
     registerSeasonInData(data, game) {
         data.push({
             seasonId: game.seasonId,
@@ -99,6 +80,9 @@ class GameBusiness {
         })
     };
 
+    addAccountToList(playerId, accountDataList) {
+        accountDataList.push({id: playerId});
+    };
 
     addGameToSeason(data, game) {
         for (let season of data) {
@@ -109,6 +93,15 @@ class GameBusiness {
         }
     };
 
+    isAccountAlreadyRegistered(accountId, accountDataList) {
+        for (let account of accountDataList) {
+            if (account.accountId === accountId) {
+                return true;
+            }
+        }
+        return false;
+    };
+
     isSeasonAlreadyRegistered(seasonId, seasonData) {
         for (let season of seasonData) {
             if (season.seasonId === seasonId) {
@@ -117,6 +110,50 @@ class GameBusiness {
         }
         return false;
     };
+
+    calculateAccountGameStats(game, accountId, accountDataList) {
+
+        let stats = {presences: 0, wins: 0, draws: 0, points: 0};
+        this.calculateGameStats(game, accountId, stats);
+        let accountData = accountDataList.find(element => element.id === accountId);
+        accountData.stats = stats;
+    }
+
+    calculateSeasonStats(season, accountId) {
+        let stats = {presences: 0, wins: 0, draws: 0, points: 0};
+        for (let game of season.gameList) {
+            this.calculateGameStats(game, accountId, stats);
+        }
+
+        season.presences = stats.presences;
+        season.wins = stats.wins;
+        season.draws = stats.draws;
+        season.points = stats.points;
+    };
+
+    calculateGameStats(game, accountId, stats) {
+        stats.presences += 1;
+
+        let teamSide = 0;
+        game.teams.indexOf(accountId) < 5 ? teamSide = 1 : teamSide = -1;
+
+        let goals = game.score.split("-");
+        let goalDifference = (goals[0] - goals[1]) * teamSide
+        let scoreCase = Math.sign(goalDifference);
+        switch (scoreCase) {
+            case 1:
+                stats.wins += 1;
+                stats.points += this.getPointsByGoalDifference(goalDifference);
+                break;
+            case 0:
+                stats.draws += 1;
+                stats.points += 1
+                break;
+            case -1:
+                stats.points += 0.5;
+                break;
+        }
+    }
 
     getPointsByGoalDifference(goalDifference) {
         let points = 0;
