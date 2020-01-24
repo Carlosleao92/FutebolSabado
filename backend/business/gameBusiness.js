@@ -13,7 +13,7 @@ class GameBusiness {
     async getSeasonGameHistory(req) {
         let seasonGameList = await GameDao.getGamesBySeasonId(req);
         if (seasonGameList) {
-            return this.buildSeasonDataByAccounts(seasonGameList);
+            return this.buildSeasonData(seasonGameList);
         }
         return seasonGameList
     };
@@ -21,7 +21,7 @@ class GameBusiness {
     async getAccountGameHistory(req) {
         let accountGameList = await GameDao.getGamesByAccountId(req);
         if (accountGameList) {
-            return this.buildAccountDataBySeason(accountGameList, req.params.id);
+            return this.buildAccountData(accountGameList, req.params.id);
         }
         return accountGameList;
     };
@@ -48,20 +48,21 @@ class GameBusiness {
         game.score = origin.score;
     };
 
-    buildSeasonDataByAccounts(seasonGameList) {
+    buildSeasonData(seasonGameList) {
         let accountDataList = [];
         for (let game of seasonGameList) {
             for (let accountId of game.teams) {
                 if (!this.isAccountAlreadyRegistered(accountId, accountDataList)) {
                     this.addAccountToList(accountId, accountDataList);
                 }
+                
                 this.calculateAccountGameStats(game, accountId, accountDataList);
             }
         }
         return {seasonGameList: seasonGameList, accountDataList: accountDataList};
     }
 
-    buildAccountDataBySeason(accountGameList, accountId) {
+    buildAccountData(accountGameList, accountId) {
         let data = [];
         for (let game of accountGameList) {
             if (!this.isSeasonAlreadyRegistered(game.seasonId, data)) {
