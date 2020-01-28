@@ -82,7 +82,10 @@ class GameBusiness {
     };
 
     addAccountToList(playerId, accountDataList) {
-        accountDataList.push({id: playerId});
+        accountDataList.push({
+            id: playerId,
+            stats: {presences: 0, wins: 0, draws: 0, points: 0} 
+        });
     };
 
     addGameToSeason(data, game) {
@@ -96,7 +99,7 @@ class GameBusiness {
 
     isAccountAlreadyRegistered(accountId, accountDataList) {
         for (let account of accountDataList) {
-            if (account.accountId === accountId) {
+            if (account.id === accountId) {
                 return true;
             }
         }
@@ -113,10 +116,9 @@ class GameBusiness {
     };
 
     calculateAccountGameStats(game, accountId, accountDataList) {
-
-        let stats = {presences: 0, wins: 0, draws: 0, points: 0};
-        this.calculateGameStats(game, accountId, stats);
         let accountData = accountDataList.find(element => element.id === accountId);
+        let stats = accountData.stats;
+        this.calculateGameStats(game, accountId, stats);
         accountData.stats = stats;
     }
 

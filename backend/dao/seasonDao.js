@@ -5,6 +5,10 @@ class SeasonDao {
         return Season.find();
     };
 
+    async getLatestSeason(req, res) {
+        return Season.find().sort({"createdAt": -1}).limit(1);
+    };
+
     async getSeasonsById(req, res) {
         return Season.findById(req.params.id);
     }

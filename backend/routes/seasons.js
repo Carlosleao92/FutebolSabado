@@ -7,6 +7,11 @@ router.route('/').get((req, res) => {
         .then(seasons => res.json(seasons))
         .catch(err => res.status(400).json('ERROR: ' + err));
 });
+router.route('/latest').get((req, res) => {
+    SeasonBusiness.getLatestSeason(req)
+        .then(seasons => res.json(seasons))
+        .catch(err => res.status(400).json('ERROR: ' + err));
+});
 
 router.route('/:id').get((req, res) => {
     SeasonBusiness.getSeasonsById(req)

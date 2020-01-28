@@ -31,7 +31,7 @@ router.route('/season/:id').get((req, res) => {
 
 router.route('/add').post((req, res) => {
     GameBusiness.addGame(req)
-        .then(() => res.json('user added'))
+        .then(() => res.json('Game added'))
         .catch(err => res.status(400).json('ERROR: ' + err));
 })
 

@@ -6,6 +6,10 @@ class SeasonBusiness {
         return await SeasonDao.getAllSeasons(req);
     };
 
+    async getLatestSeason(req) {
+        return await SeasonDao.getLatestSeason(req);
+    };
+
     async getSeasonsById(req) {
         return await SeasonDao.getSeasonsById(req);
     };
