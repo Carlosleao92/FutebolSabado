@@ -202,9 +202,10 @@ const seasons = {
     ] 
 }
 
-export const data = {
+export const Data = {
     articles: articles,
     accounts: accounts,
-    seasons: seasons
+    seasons: seasons,
+    api: 'http://localhost:5000'
 }
 
