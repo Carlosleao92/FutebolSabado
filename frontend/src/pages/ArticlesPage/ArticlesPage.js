@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ArticleCard from '../ArticleCard/ArticleCard'
+import ArticleCard from '../../components/ArticleCard/ArticleCard'
 import './ArticlesPage.css'
 
 export default class ArticlesPage extends Component {

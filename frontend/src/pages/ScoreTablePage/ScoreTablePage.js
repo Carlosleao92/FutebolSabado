@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import DropDown from '../DropDown/DropDown'
-import ScoreTable from '../ScoreTable/ScoreTable'
+import DropDown from '../../components/DropDown/DropDown'
+import ScoreTable from '../../components/ScoreTable/ScoreTable'
 
 export default class ScoreTablePage extends Component {
     constructor(props) {

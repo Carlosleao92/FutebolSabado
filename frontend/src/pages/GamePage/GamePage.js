@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import DropDown from '../DropDown/DropDown'
-import GameInfo from '../GameInfo/GameInfo'
+import DropDown from '../../components/DropDown/DropDown'
+import GameInfo from '../../components/GameInfo/GameInfo'
 
 export default class GamePage extends Component {
     constructor(props) {

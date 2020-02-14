@@ -1,21 +1,23 @@
 import React, { Component } from 'react'
 import {Switch, Route} from 'react-router-dom'
-import Home from '../components/Home/Home'
-import ArticlesPage from '../components/ArticlesPage/ArticlesPage'
-import ScoreTablePage from '../components/ScoreTablePage/ScoreTablePage'
-import ArticleDetailsPage from '../components/ArticleDetailsPage/ArticleDetailsPage'
-import GamePage from '../components/GamePage/GamePage'
-import PlayersPage from '../components/PlayersPage/PlayersPage'
+import Home from '../pages/Home/Home'
+import ArticlesPage from '../pages/ArticlesPage/ArticlesPage'
+import ScoreTablePage from '../pages/ScoreTablePage/ScoreTablePage'
+import ArticleDetailsPage from '../pages/ArticleDetailsPage/ArticleDetailsPage'
+import GamePage from '../pages/GamePage/GamePage'
+import PlayersPage from '../pages/PlayersPage/PlayersPage'
 
 
 export default class Router extends Component {
     
     render() {
+        //TODO Remove data
         let data = this.props.data;
         let currentSeason = data.seasons.seasonList.filter(season => season.Id = data.seasons.currentSeasonId)[0]
+        //
         return (
             <Switch>
-                <Route exact path='/' render={() => <Home games={currentSeason.gameList}/>} />
+                <Route exact path='/' render={() => <Home/>} /> 
                 <Route exact path='/table' render={() => <ScoreTablePage seasons={data.seasons}/>} />
                 <Route exact path='/games' render={() => <GamePage seasons={data.seasons}/>}/>
                 <Route exact path='/games/create' render={() => <h1>game create</h1>}/>
