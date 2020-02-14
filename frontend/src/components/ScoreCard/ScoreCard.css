@@ -1,0 +1,23 @@
+
+p {
+    margin:0;
+}
+
+.purple {
+    background-color: rgb(54, 0, 92);
+}
+.pink {
+    background-color: rgb(219, 56, 83);
+    margin-right: 0;
+    margin-left: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.align-center {
+    text-align: center;
+}
+
+col-10.h-100.purple{
+    height: 10px;
+}

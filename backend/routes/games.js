@@ -24,7 +24,7 @@ router.route('/account/:id').get((req, res) => {
 
 //get all games and stats of the season Id (organized by player)
 router.route('/season/:id').get((req, res) => {
-    GameBusiness.getSeasonGameHistory(req)
+    GameBusiness.getSeasonGameHistory(req.params.id)
         .then(game => res.json(game))
         .catch(err => res.status(400).json('ERROR: ' + err));
 });

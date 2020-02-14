@@ -1,43 +1,51 @@
 import React, { Component } from 'react'
 import HomeHeader from '../../components/HomeHeader/HomeHeader'
 import ScoreColumn from '../../components/ScoreColumn/ScoreColumn'
-import Spinner from '../../components/Spinner/Spinner'
+import CardImageLeft from '../../components/CardImageLeft/CardImageLeft'
+import './Home.css'
 
 export default class Home extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            season: "",
-            data: "",
-            accounts: ""
+            latestSeason: ""
         }
     }
 
     componentDidMount = async function () {
-        let season = await (await fetch(`http://localhost:5000/api/seasons/latest`)).json();
-        let data = await (await fetch(`http://localhost:5000/api/games/season/${season[0]._id}`)).json();
-        let accounts = await (await fetch(`http://localhost:5000/api/accounts`)).json();
+        let latestSeason = await (await fetch(`http://localhost:5000/api/seasons/latest`)).json();
         this.setState({
-            season: season,
-            data: data,
-            accounts: accounts
+            latestSeason: latestSeason
         })
     }
 
     render() {
-        let data = this.state.data;
+        let latestSeason = this.state.latestSeason;
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-sm-9">
-                        <HomeHeader message="This weeks match has ended!" score="9-2" id="086487" />
+            <div className="home">
+                <header className="home-header">
+                    <div className="main-new" >
+                                <CardImageLeft></CardImageLeft>
                     </div>
-                    <div className='col-sm-3 card'>
-                        <ScoreColumn accountList={data.accountDataList} />
+
+                </header>
+                <div className="w-100 home-container">
+                    <div className="row">
+                        <div className=" col-sm-6">
+                            <div className="new">
+                                {false &&  <HomeHeader message="This weeks match has ended!" score="9-2" id="086487" />}
+                            </div>
+                        </div>
+                        <div className='col-md-3 '>
+                            <div className='score-column' >
+                                <ScoreColumn accountList={latestSeason.accountDataList} />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
         )
     }
 }

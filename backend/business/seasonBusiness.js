@@ -1,32 +1,46 @@
 let Season = require('../models/season.model');
 let SeasonDao = require('../dao/seasonDao');
+let AccountDao = require('../dao/accountDao');
+let SeasonMappers = require('../mappers/SeasonMapper');
+let GameBusiness = require('../business/gameBusiness')
 
 class SeasonBusiness {
-    async getAllSeasons(req) {
-        return await SeasonDao.getAllSeasons(req);
+    async getAllSeasons() {
+        return await SeasonDao.getAllSeasons();
     };
 
-    async getLatestSeason(req) {
-        return await SeasonDao.getLatestSeason(req);
+    async getLatestSeason() {
+        const seasonDao = await SeasonDao.getLatestSeason();
+        if (seasonDao) {
+            const latestSeason = await GameBusiness.getSeasonGameHistory(seasonDao[0]._id);
+            if (latestSeason) {
+                latestSeason.name=seasonDao[0].name;
+                const accounts = await AccountDao.getAllAccounts();
+                if (accounts) {   
+                    SeasonMappers.mapAccountInfoToLatestSeason(accounts, latestSeason);
+                }
+                return latestSeason
+            }
+        }
+        return null;
     };
 
-    async getSeasonsById(req) {
-        return await SeasonDao.getSeasonsById(req);
+    async getSeasonsById(id) {
+        return await SeasonDao.getSeasonsById(id);
     };
 
-    async addSeason(req) {
-        const name = req.body.name;
+    async addSeason(name) {
         const newSeason = new Season({name});
         
         return await SeasonDao.addSeason(newSeason);
     };
 
-    async deleteSeason(req) {
-        return await SeasonDao.deleteSeason(req);
+    async deleteSeason(id) {
+        return await SeasonDao.deleteSeason(id);
     };
 
-    async updateSeason(req) {
-        return await SeasonDao.updateSeason(req);
+    async updateSeason(id, name ) {
+        return await SeasonDao.updateSeason(id, name);
     };
 };
 

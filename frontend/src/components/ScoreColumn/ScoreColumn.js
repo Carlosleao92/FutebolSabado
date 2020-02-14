@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Data } from '../../data/data'
 import ScoreCard from '../ScoreCard/ScoreCard'
 import Spinner from '../Spinner/Spinner'
+import './ScoreColumn.css'
 
 
 export default function ScoreColumn(props) {
@@ -21,15 +22,23 @@ export default function ScoreColumn(props) {
 
     let scoreCardList;
     if (accountList) {
-        sortAccountList(accountList)
-        scoreCardList = accountList.map((account) =>
-            <ScoreCard key={account.id} stats={account.stats} name={account.name} />)
+        sortAccountList(accountList);
+        scoreCardList = accountList.slice(0,10).map((account, index) =>
+        <div className="row mb-2">
+            <ScoreCard
+                type={index < 1 ? "golden" : "bg-dark"} 
+                key={account.id} 
+                stats={account.stats} 
+                firstName={account.firstName} 
+                lastName={account.lastName}
+            />
+        </div>)
     }
     
     if (scoreCardList) {
         return (
             <div className="score-column">
-                <h4>Season Results:</h4>
+                <h2 className="score-column-title">LEAGUE TABLE</h2>
                 {scoreCardList}
             </div>)
     } else {

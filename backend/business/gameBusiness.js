@@ -10,8 +10,8 @@ class GameBusiness {
         return await GameDao.getGamesById(req);
     };
 
-    async getSeasonGameHistory(req) {
-        let seasonGameList = await GameDao.getGamesBySeasonId(req);
+    async getSeasonGameHistory(id) {
+        let seasonGameList = await GameDao.getGamesBySeasonId(id);
         if (seasonGameList) {
             return this.buildSeasonData(seasonGameList);
         }

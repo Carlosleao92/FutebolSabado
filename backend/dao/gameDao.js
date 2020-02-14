@@ -10,8 +10,8 @@ class GameDao {
         return await Game.findById(req.params.id);
     }
 
-    async getGamesBySeasonId(req) {
-        return await Game.find({ seasonId: req.params.id });
+    async getGamesBySeasonId(id) {
+        return await Game.find({ seasonId: id });
     }
 
     async getGamesByAccountId(req) {

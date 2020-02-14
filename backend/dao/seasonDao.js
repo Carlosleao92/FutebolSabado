@@ -1,31 +1,31 @@
 let Season = require('../models/season.model');
 
 class SeasonDao {
-    async getAllSeasons(req, res) {
+    async getAllSeasons() {
         return Season.find();
     };
 
-    async getLatestSeason(req, res) {
+    async getLatestSeason() {
         return Season.find().sort({"createdAt": -1}).limit(1);
     };
 
-    async getSeasonsById(req, res) {
-        return Season.findById(req.params.id);
+    async getSeasonsById(id) {
+        return Season.findById(id);
     }
 
-    async addSeason(newSeason, res) {
+    async addSeason(newSeason) {
         return newSeason.save();
     }
 
-    async deleteSeason(req, res) {
-        return Season.findByIdAndDelete(req.params.id);
+    async deleteSeason(id) {
+        return Season.findByIdAndDelete(id);
     }
 
-    async updateSeason(req, res) {
+    async updateSeason(id, name) {
         return Season.updateOne(
-            { _id: req.params.id },
+            { _id: id },
             {
-                name: req.body.name
+                name: name
             }
         );
     }

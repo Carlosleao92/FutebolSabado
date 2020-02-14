@@ -1,0 +1,11 @@
+.jumbotron {
+    background: linear-gradient(rgba(219, 218, 218, 0.7), rgba(219, 218, 218, 0.062)) 
+}
+.sub-text {
+    margin-bottom: 10px;
+}
+
+.card {
+    margin-left: auto;
+    margin-right: auto;
+}
