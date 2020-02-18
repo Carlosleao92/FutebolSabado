@@ -24,7 +24,7 @@ export default function ScoreColumn(props) {
     if (accountList) {
         sortAccountList(accountList);
         scoreCardList = accountList.slice(0,10).map((account, index) =>
-        <div className="row mb-2">
+        <div  key={account.id}  className="row mb-2">
             <ScoreCard
                 type={index < 1 ? "golden" : "bg-dark"} 
                 key={account.id} 

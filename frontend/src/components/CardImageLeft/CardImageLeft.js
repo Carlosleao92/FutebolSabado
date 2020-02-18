@@ -13,7 +13,7 @@ export default function CardImageLeft() {
                         <h5 className="card-title">New Game</h5>
                         <p className="card-text">The inscriptions for the next game have started</p>
                         <p className="card-text muted-text"><small className="text-muted">Be the first to make a presence</small></p>
-                        <button className="btn btn-primary btn-lg">Sign me in</button>
+                        <button className="btn btn-primary btn-sm">Sign me in</button>
                     </div>
                 </div>
             </div>

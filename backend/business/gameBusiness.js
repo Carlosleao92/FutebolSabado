@@ -1,5 +1,6 @@
 let Game = require('../models/game.model');
 let GameDao = require('../dao/gameDao');
+let AccountDao = require('../dao/accountDao');
 
 class GameBusiness {
     async getAllGames(req) {
@@ -7,7 +8,10 @@ class GameBusiness {
     };
 
     async getGamesById(req) {
-        return await GameDao.getGamesById(req);
+        let game = await GameDao.getGamesById(req);
+        for (account in game.teams) {
+            AccountDao.getGamesByAccountId(account)
+        }
     };
 
     async getSeasonGameHistory(id) {
@@ -55,11 +59,11 @@ class GameBusiness {
                 if (!this.isAccountAlreadyRegistered(accountId, accountDataList)) {
                     this.addAccountToList(accountId, accountDataList);
                 }
-                
+
                 this.calculateAccountGameStats(game, accountId, accountDataList);
             }
         }
-        return {seasonGameList: seasonGameList, accountDataList: accountDataList};
+        return { seasonGameList: seasonGameList, accountDataList: accountDataList };
     }
 
     buildAccountData(accountGameList, accountId) {
@@ -84,7 +88,7 @@ class GameBusiness {
     addAccountToList(playerId, accountDataList) {
         accountDataList.push({
             id: playerId,
-            stats: {presences: 0, wins: 0, draws: 0, points: 0} 
+            stats: { presences: 0, wins: 0, draws: 0, points: 0 }
         });
     };
 
@@ -123,7 +127,7 @@ class GameBusiness {
     }
 
     calculateSeasonStats(season, accountId) {
-        let stats = {presences: 0, wins: 0, draws: 0, points: 0};
+        let stats = { presences: 0, wins: 0, draws: 0, points: 0 };
         for (let game of season.gameList) {
             this.calculateGameStats(game, accountId, stats);
         }

@@ -1,11 +1,25 @@
-.jumbotron {
-    background: linear-gradient(rgba(219, 218, 218, 0.7), rgba(219, 218, 218, 0.062)) 
-}
-.sub-text {
-    margin-bottom: 10px;
-}
+.home-header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://i.pinimg.com/originals/52/c0/ac/52c0ac5b0bddff68bb33e2770312e134.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+    background-attachment: fixed;
+    margin-bottom: 30px;
+    position: relative;
+    padding-top: 80px;
+}   
 
-.card {
+.header-div {
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
+}
+
+.header-button-area {
+    margin-top: 25px;
+}
+
+.header-button-area button{
+    margin-left: 10px;
+    margin-right: 10px;
 }

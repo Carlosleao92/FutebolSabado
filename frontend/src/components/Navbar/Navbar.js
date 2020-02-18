@@ -15,9 +15,6 @@ export default class Navbar extends Component {
                             <NavLink exact to="/table" className='nav-link'>Score Table</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink exact to="/articles" className='nav-link'>Articles</NavLink>
-                        </li>
-                        <li className="nav-item">
                             <NavLink exact to="/players" className='nav-link'>Players</NavLink>
                         </li>
                         <li className="nav-item">

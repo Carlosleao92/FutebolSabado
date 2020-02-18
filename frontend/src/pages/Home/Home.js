@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import HomeHeader from '../../components/HomeHeader/HomeHeader'
 import ScoreColumn from '../../components/ScoreColumn/ScoreColumn'
+import NotificationColumn from '../../components/NotificationColumn/NotificationColumn'
 import CardImageLeft from '../../components/CardImageLeft/CardImageLeft'
+import HomeHeader from '../../components/HomeHeader/HomeHeader'
 import './Home.css'
+
 
 export default class Home extends Component {
     constructor(props) {
@@ -22,28 +24,26 @@ export default class Home extends Component {
 
     render() {
         let latestSeason = this.state.latestSeason;
+        let latestGameId = latestSeason ? latestSeason.seasonGameList[0]._id : "/ "
         return (
             <div className="home">
-                <header className="home-header">
-                    <div className="main-new" >
-                                <CardImageLeft></CardImageLeft>
-                    </div>
 
-                </header>
-                <div className="w-100 home-container">
-                    <div className="row">
-                        <div className=" col-sm-6">
-                            <div className="new">
-                                {false &&  <HomeHeader message="This weeks match has ended!" score="9-2" id="086487" />}
-                            </div>
+                <HomeHeader latestGameId={latestGameId}></HomeHeader>
+                <div className="container">
+                    <div className="row justify-content-around">
+                        
+                    </div>
+                    <div className="row justify-content-around">
+                        <div className='col-xl-4'>
+                            <ScoreColumn accountList={latestSeason.accountDataList} />
                         </div>
-                        <div className='col-md-3 '>
-                            <div className='score-column' >
-                                <ScoreColumn accountList={latestSeason.accountDataList} />
-                            </div>
+                        <div className="col-xl-7">
+                            <NotificationColumn></NotificationColumn>
                         </div>
+
                     </div>
                 </div>
+
             </div>
 
         )

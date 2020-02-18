@@ -7,8 +7,8 @@ class AccountDao {
 
     };
 
-    async getAccountsById(req) {
-        return Account.findById(req.params.id);
+    async getAccountsById(id) {
+        return Account.findById(id);
     }
 
     async getAccountsByIds(req) {

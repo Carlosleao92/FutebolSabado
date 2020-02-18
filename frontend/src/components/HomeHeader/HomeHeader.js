@@ -1,16 +1,22 @@
 import React from 'react'
 import './HomeHeader.css'
+import { Link } from "react-router-dom"
 
 export default function HomeHeader(props) {
     return (
         <div>
-            <div className="jumbotron">
-                <h1 className="display-4">{props.score}</h1>
-                <p className="lead">{props.message}</p>
-                <hr className="my-4"></hr>
-                <p className="  ">Click here for more details!</p>
-                <a className="btn btn-primary btn-lg" href={`/games/${props.id}`} role="button">Lets Go</a>
-            </div>
+            <header className="home-header">
+                    <div className="header-div text-white">
+                        <h1>Futebol ao Sabado</h1>
+                        <div className="header-button-area">
+                        <a href={`/games/${props.latestGameId}`}>
+                            <button type="button" className="btn btn-secondary btn-sm">Latest Game</button>
+                        </a>
+                            
+                            <button type="button" className="btn btn-outline-secondary btn-sm">Latest Article</button>
+                        </div>
+                    </div>
+                </header>
         </div>
     )
 }

@@ -6,8 +6,8 @@ class AccountBusiness {
         return await AccountDao.getAllAccounts(req);
     };
 
-    async getAccountsById(req) {
-        return await AccountDao.getAccountsById(req);
+    async getAccountsById(id) {
+        return await AccountDao.getAccountsById(id);
     };
 
     async getAccountsByIds(req) {
