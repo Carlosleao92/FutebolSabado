@@ -25,6 +25,7 @@ export default class Home extends Component {
         return (
             <div className="home">
                 <HomeHeader latestGameId={latestGameId}></HomeHeader>
+                <GameSection/>
             </div>
 
         )

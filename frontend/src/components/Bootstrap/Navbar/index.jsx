@@ -12,7 +12,7 @@ export default class Navbar extends Component {
                     <a className="navbar-brand" href="/">Futebol ao Sabado</a>
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li className="nav-item">
-                            <NavLink exact to="/table" className='nav-link'>Score Table</NavLink>
+                            <NavLink exact to="/table" className='nav-link'>Table</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink exact to="/players" className='nav-link'>Players</NavLink>
