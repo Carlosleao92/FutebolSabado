@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import HomeHeader from '../../components/layout/HomeHeader'
+import GameSection from '../../components/layout/GameSection'
 import './Home.css'
 
 

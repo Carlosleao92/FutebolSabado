@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function GameSection() {
+export default function PlayerPage() {
     return (
         <div>
-            Game section
+            Player Page
         </div>
     )
 }
