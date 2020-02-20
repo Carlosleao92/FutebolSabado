@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import HomeHeader from '../../components/layout/HomeHeader'
 import './Home.css'
+import ArticleSection from '../../components/layout/ArticleSection';
+import GameSection from '../../components/layout/GameSection';
 
 
 export default class Home extends Component {
@@ -25,7 +27,8 @@ export default class Home extends Component {
         return (
             <div className="home">
                 <HomeHeader latestGameId={latestGameId}></HomeHeader>
-                <GameSection/>
+                <GameSection games={latestSeason.seasonGameList}/>
+                <ArticleSection/>
             </div>
 
         )
