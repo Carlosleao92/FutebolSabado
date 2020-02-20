@@ -3,15 +3,12 @@ let GameDao = require('../dao/gameDao');
 let AccountDao = require('../dao/accountDao');
 
 class GameBusiness {
-    async getAllGames(req) {
-        return await GameDao.getAllGames(req);
+    async getAllGames() {
+        return await GameDao.getAllGames();
     };
 
-    async getGamesById(req) {
-        let game = await GameDao.getGamesById(req);
-        for (account in game.teams) {
-            AccountDao.getGamesByAccountId(account)
-        }
+    async getGamesById(id) {
+        return await GameDao.getGamesById(id);
     };
 
     async getSeasonGameHistory(id) {
@@ -22,10 +19,10 @@ class GameBusiness {
         return seasonGameList
     };
 
-    async getAccountGameHistory(req) {
-        let accountGameList = await GameDao.getGamesByAccountId(req);
+    async getAccountGameHistory(accountId) {
+        let accountGameList = await GameDao.getGamesByAccountId(accountId);
         if (accountGameList) {
-            return this.buildAccountData(accountGameList, req.params.id);
+            return this.buildAccountData(accountGameList, accountId);
         }
         return accountGameList;
     };
@@ -37,8 +34,8 @@ class GameBusiness {
         return await GameDao.addGame(newGame);
     };
 
-    async deleteGame(req) {
-        return await GameDao.deleteGame(req);
+    async deleteGame(id) {
+        return await GameDao.deleteGame(id);
     };
 
     async updateGame(req) {
