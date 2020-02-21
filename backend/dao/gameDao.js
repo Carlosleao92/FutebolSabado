@@ -2,28 +2,28 @@
 let Game = require('../models/game.model');
 
 class GameDao {
-    async getAllGames(req) {
+    async getAllGames() {
         return await Game.find();
     };
 
-    async getGamesById(req) {
-        return await Game.findById(req.params.id);
+    async getGamesById(id) {
+        return await Game.findById(id);
     }
 
     async getGamesBySeasonId(id) {
         return await Game.find({ seasonId: id });
     }
 
-    async getGamesByAccountId(req) {
-        return await Game.find({ teams: { $all: [`${req.params.id}`] } });
+    async getGamesByAccountId(id) {
+        return await Game.find({ teams: { $all: [`${id}`] } });
     }
 
     async addGame(newGame) {
         return await newGame.save();
     }
 
-    async deleteGame(req) {
-        return await Game.findByIdAndDelete(req.params.id);
+    async deleteGame(id) {
+        return await Game.findByIdAndDelete(id);
     }
 
     async updateGame(req) {

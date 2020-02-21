@@ -1,13 +1,21 @@
 import React, { Component } from 'react'
 import {Switch, Route} from 'react-router-dom'
-import Home from '../pages/Home/Index'
+import Home from '../pages/Home'
+import TablePage from '../pages/TablePage'
+import GamePage from '../pages/GamePage'
+import PlayerPage from '../pages/PlayerPage'
+import ArticlePage from '../pages/ArticlePage'
 
 export default class Router extends Component {
     render() {
 
         return (
             <Switch>
-                <Route exact path='/' render={() => <Home/>} /> 
+                <Route exact path='/' render={() => <Home/>} />
+                <Route exact path='/table' render={() => <TablePage/>}/>
+                <Route exact path='/games/:id' render={() => <GamePage/>}/>
+                <Route exact path='/articles/:id' render={routeProps => <ArticlePage {...routeProps}/>}/> 
+                <Route exact path='/players/:id' render={() => <PlayerPage/>}/> 
             </Switch>
         )
     }
