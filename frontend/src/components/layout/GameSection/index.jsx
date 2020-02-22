@@ -1,18 +1,20 @@
 import React from 'react'
 import Tabs from '../../Bootstrap/Tabs'
+import GameCard from '../../Bootstrap/GameCard'
 
 export default function GameSection(props) {
 
-    //Organize dates
-    
-    //group by month
-
-    //for each month get a tab
-
     return (
         <div>
-            <Tabs/>
-            <p>games</p>
+            <Tabs games={props.games}/>
+            <div className="card text-center container">
+                <div className="card-header">
+                    Our Featured Games
+                </div>
+                <GameCard status="open"/>
+                <GameCard status="cancelled"/>
+                <GameCard status="closed"/>
+            </div>
         </div>
     )
 }
