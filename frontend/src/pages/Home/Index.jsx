@@ -12,32 +12,37 @@ export default class Home extends Component {
         }
     }
 
+
+
     organizeGamesByMonth = (latestSeason) => {
 
         //ARRAY WITH ALL GAMES BY MONTH
         let monthArray = [];
-        for(let i=0; i<12; i++){
+        for (let i = 0; i < 12; i++) {
             monthArray[i] = [];
         }
-        
+
         for (let game of latestSeason.seasonGameList) {
-            let date = new Date (game.date);
+            let date = new Date(game.date);
             monthArray[date.getMonth()].push(game);
         }
 
         let thisMonth = new Date
         //thisMonth = thisMonth.getMonth();
         thisMonth = 4;
-        
+
         let lastFourMonths = [];
-        for (let i=0; i < 4; i++) {
-            if (thisMonth - i > 0) {
-                lastFourMonths[i] = monthArray[thisMonth - i -1];
-            } else {
-                lastFourMonths[i] = monthArray[12 - i];
+        let j = 0;
+        for (let i = 0; i < 4; i++) {
+            if (thisMonth - i > 0 && monthArray[thisMonth - i - 1].length > 0) {
+                lastFourMonths[j] = monthArray[thisMonth - i - 1];
+                j++;
+            } else if (monthArray[12 - i].length > 0) {
+                lastFourMonths[j] = monthArray[12 - i];
+                j++;
             }
         }
-        return lastFourMonths
+        return lastFourMonths.filter((entry) => { return entry })
 
     }
 

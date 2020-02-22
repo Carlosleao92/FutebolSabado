@@ -1,13 +1,12 @@
 import React from 'react'
 
-export default function TeamList() {
+export default function TeamList(props) {
+    const listOfPlayers = props.teams.map((player) =>
+    <li className="list-group-item">{player}</li>
+    )
     return (
         <ul className="list-group list-group-flush">
-            <li className="list-group-item">OPEN</li>
-            <li className="list-group-item">OPEN</li>
-            <li className="list-group-item">OPEN</li>
-            <li className="list-group-item">OPEN</li>
-            <li className="list-group-item">OPEN</li>
+            {listOfPlayers}
         </ul>
     )
 }

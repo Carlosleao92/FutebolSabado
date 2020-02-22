@@ -1,23 +1,23 @@
 import React from 'react'
-import {getFormattedDate} from '../../../utils/dateUtils'
+import Tab from '../Tab';
 
 export default function Tabs(props) {
-    let games = props.games;
-    let tabs = games && games.map((month, index) => {
-        if (month && month.length > 0) {
-            return (
-                <li className="nav-item" key={month[0].date}>
-                    <button className={`nav-link ${index === 0 && 'active'}`}>{getFormattedDate(month[0].date)}</button>
-                </li>
-            )
-        }
-    })
+
+    const {labels, onClick, selectedTab} = props;
+
+    let tabs = labels && labels.map((entry, index) => 
+        <Tab 
+            key={index}
+            onClick={onClick}
+            value={index}
+            selectedValue={props.selectedTab}
+            label={labels[index]}
+            />
+    )
 
     return (
-        <div className="container d-flex flex-row-reverse">
-            <ul className="nav nav-tabs nav-justified">
-                {tabs}
-            </ul>
-        </div>
+        <ul className="nav nav-tabs nav-justified">
+            {tabs}
+        </ul>
     )
 }
