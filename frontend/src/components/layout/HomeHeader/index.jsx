@@ -9,10 +9,10 @@ export default function HomeHeader(props) {
                         <h1>Futebol ao Sabado</h1>
                         <div className="header-button-area">
                         <a href={`/games/${props.latestGameId}`}>
-                            <button type="button" className="btn btn-secondary btn-sm">Latest Game</button>
+                            <button type="button" className="btn btn-primary btn-lg">Latest Game</button>
                         </a>
                             
-                            <button type="button" className="btn btn-outline-secondary btn-sm">Latest Article</button>
+                            <button type="button" className="btn btn-outline-secondary btn-lg">Latest Article</button>
                         </div>
                     </div>
                 </header>
