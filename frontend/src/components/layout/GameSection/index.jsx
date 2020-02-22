@@ -4,9 +4,10 @@ import GameCard from '../../Bootstrap/GameCard'
 import { getFormattedMonth } from '../../../utils/dateUtils'
 
 export default function GameSection(props) {
-    const {games} = props;
+    const { games } = props;
 
     const [selectedMonth, setSelectedMonth] = React.useState(0);
+    const [showGames, setShowGames] = React.useState(true);
 
     const tabLabels = games && games.map((month) => {
         if (month && month.length > 0) {
@@ -14,24 +15,28 @@ export default function GameSection(props) {
         }
     })
 
-    const gameCards = games && games[selectedMonth].map((game) => 
-        <GameCard status="closed" teams={game.teams} creationDate={game.createdAt} gameDate={game.date} score={game.score}/>
+    const gameCards = games && games[selectedMonth].map((game) =>
+        <GameCard status="closed" teams={game.teams} creationDate={game.createdAt} gameDate={game.date} score={game.score} />
     );
 
     const handleMonthChange = (e) => {
         setSelectedMonth(parseInt(e.target.value));
     }
 
+    const handleShowGamesToggle = (e) => {
+        showGames ? setShowGames(false) : setShowGames(true);
+    }
+
     return (
         <div>
             <div className="container d-flex flex-row-reverse">
-                <Tabs labels={tabLabels} onClick={handleMonthChange} selectedTab={selectedMonth}/>
+                <Tabs labels={tabLabels} onClick={handleMonthChange} selectedTab={selectedMonth} />
             </div>
             <div className="card text-center container">
-                <div className="card-header">
+                <div className="card-header" onClick={handleShowGamesToggle}>
                     Our Featured Games
                 </div>
-                {gameCards}
+                {showGames && gameCards}
             </div>
         </div>
     )
