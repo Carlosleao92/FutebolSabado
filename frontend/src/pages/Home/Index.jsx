@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import HomeHeader from '../../components/layout/HomeHeader'
 import GameSection from '../../components/layout/GameSection'
 import './Home.css'
+import { NUMBER_OF_MONTHS } from '../../utils/dateUtils'
+
+
+const MAX_NUMBER_OF_TABS = 4;
 
 export default class Home extends Component {
     constructor(props) {
@@ -12,38 +16,38 @@ export default class Home extends Component {
         }
     }
 
-
-
     organizeGamesByMonth = (latestSeason) => {
 
         //ARRAY WITH ALL GAMES BY MONTH
         let monthArray = [];
-        for (let i = 0; i < 12; i++) {
+        for (let i = 0; i < NUMBER_OF_MONTHS; i++) {
             monthArray[i] = [];
         }
-
+        // ADD GAMES IN THE MONTH INDEX
         for (let game of latestSeason.seasonGameList) {
             let date = new Date(game.date);
             monthArray[date.getMonth()].push(game);
         }
+        //TODAYs DATE
+        let today = new Date
+        // TODO remove comment below
+        //currentMonth = today.getMonth();
+        let currentMonth = 4;
 
-        let thisMonth = new Date
-        //thisMonth = thisMonth.getMonth();
-        thisMonth = 4;
-
+        //GET THE LAST 4 MONTHS THAT HAD GAMES 
         let lastFourMonths = [];
-        let j = 0;
-        for (let i = 0; i < 4; i++) {
-            if (thisMonth - i > 0 && monthArray[thisMonth - i - 1].length > 0) {
-                lastFourMonths[j] = monthArray[thisMonth - i - 1];
-                j++;
-            } else if (monthArray[12 - i].length > 0) {
-                lastFourMonths[j] = monthArray[12 - i];
-                j++;
+        let index = 0;
+
+        for (let i = 0; i < MAX_NUMBER_OF_TABS; i++) {
+            if (currentMonth - i > 0 && monthArray[currentMonth - i - 1].length > 0) {
+                lastFourMonths[index] = monthArray[currentMonth - i - 1];
+                index++;
+            } else if (monthArray[NUMBER_OF_MONTHS - i].length > 0) {
+                lastFourMonths[index] = monthArray[NUMBER_OF_MONTHS - i];
+                index++;
             }
         }
         return lastFourMonths.filter((entry) => { return entry })
-
     }
 
     componentDidMount = async function () {
@@ -57,7 +61,6 @@ export default class Home extends Component {
         } catch {
             console.log("ERROR");
         }
-
     }
 
     render() {
