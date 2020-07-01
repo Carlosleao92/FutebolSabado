@@ -4,20 +4,20 @@ let GameBusiness = require('../business/gameBusiness')
 
 
 router.route('/').get((req, res) => {
-    GameBusiness.getAllGames(req)
+    GameBusiness.getAllGames()
         .then(game => { res.json(game) })
         .catch(err => res.status(400).json('ERROR: ' + err));
 });
 
 router.route('/:id').get((req, res) => {
-    GameBusiness.getGamesById(req)
+    GameBusiness.getGamesById(req.params.id)
         .then(game => res.json(game))
         .catch(err => res.status(400).json('ERROR: ' + err));
 });
 
 //gets all games and stats of the Account Id (organized by season)
 router.route('/account/:id').get((req, res) => {
-    GameBusiness.getAccountGameHistory(req)
+    GameBusiness.getAccountGameHistory(req.params.id)
         .then(game => res.json(game))
         .catch(err => res.status(400).json('ERROR: ' + err));
 });
@@ -36,7 +36,7 @@ router.route('/add').post((req, res) => {
 })
 
 router.route('/delete/:id').delete((req, res) => {
-    GameBusiness.deleteGame(req)
+    GameBusiness.deleteGame(req.params.id)
         .then(() => { res.json('Game deleted.') })
         .catch(err => res.status(400).json('ERROR: ' + err));
 })

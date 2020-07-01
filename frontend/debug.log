@@ -1,0 +1,1 @@
+[0222/191214.910:ERROR:process_info.cc(375)] NtQuerySystemInformation SystemExtendedHandleInformation: O comprimento do registo de informações especificado não corresponde ao comprimento necessário para a classe de informações especificada. (0xc0000004)

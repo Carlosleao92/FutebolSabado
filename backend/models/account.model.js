@@ -15,6 +15,10 @@ const accountSchema = new Schema({
         unique: false,
         trim: true
     },
+    password: {
+        type: String,
+        required: true
+    }
 
 }, {
     timestamps: true

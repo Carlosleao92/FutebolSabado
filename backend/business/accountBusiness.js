@@ -10,9 +10,13 @@ class AccountBusiness {
         return await AccountDao.getAccountsById(id);
     };
 
+    a
+
     async getAccountsByIds(req) {
         return await AccountDao.getAccountsByIds(req);
     };
+
+    b
 
     async addAccount(req) {
         const newAccount = new Account();
@@ -20,6 +24,8 @@ class AccountBusiness {
 
         return await AccountDao.addAccount(newAccount);
     };
+
+    c
 
     async deleteAccount(req) {
         return await AccountDao.deleteAccount(req);
