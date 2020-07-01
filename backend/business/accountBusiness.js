@@ -10,6 +10,8 @@ class AccountBusiness {
         return await AccountDao.getAccountsById(id);
     };
 
+    a
+
     async getAccountsByIds(req) {
         return await AccountDao.getAccountsByIds(req);
     };
