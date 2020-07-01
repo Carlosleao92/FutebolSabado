@@ -16,6 +16,8 @@ class AccountBusiness {
         return await AccountDao.getAccountsByIds(req);
     };
 
+    b
+
     async addAccount(req) {
         const newAccount = new Account();
         this.mapAccountData(req.body, newAccount);
