@@ -25,6 +25,8 @@ class AccountBusiness {
         return await AccountDao.addAccount(newAccount);
     };
 
+    c
+
     async deleteAccount(req) {
         return await AccountDao.deleteAccount(req);
     };
